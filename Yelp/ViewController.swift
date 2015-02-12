@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, SettingsViewControllerDelegate {
     var client: YelpClient!
     var businesses: [Business] = []
     var filteredData: [Business] = []
     var searchBar: UISearchBar?
     var searchController: UISearchController!
+    var filterSettings : FilterSettings!
     
     @IBOutlet weak var tableView: UITableView!
     // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
@@ -29,8 +30,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        filterSettings = FilterSettings()
         tableView.dataSource = self
         tableView.delegate = self
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50
         
@@ -80,6 +83,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.reloadData()
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var vc = segue.destinationViewController as SettingsViewController
+        vc.delegate = self
+        vc.setFilterSettings(filterSettings)
+    }
+    
+    func didChangeFilters(filterSettings: FilterSettings) {
+        self.filterSettings = filterSettings
+        // do search
+    }
     
 }
 
