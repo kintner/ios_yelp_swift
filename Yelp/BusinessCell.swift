@@ -19,7 +19,12 @@ class BusinessCell: UITableViewCell {
     @IBOutlet weak var categories: UILabel!
     @IBOutlet weak var ratingImage: UIImageView!
     @IBOutlet weak var posterImage: UIImageView!
-
+    
+    override func awakeFromNib() {
+        self.posterImage.layer.cornerRadius = 3
+        self.posterImage.clipsToBounds = true
+    }
+    
     
     func updateFromModel(model : Business) {
         self.model = model

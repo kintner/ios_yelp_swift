@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Timothy Lee. All rights reserved.
 //
 
-import UIKit
 
 class Business {
     var name : String?
@@ -16,11 +15,7 @@ class Business {
     var address : String?
     var categories : String?
     var distance : Double?
-    
-    
-    init() {
-        
-    }
+  
     
     init(fromDictionary dictionary: NSDictionary) {
         var cats = dictionary.valueForKeyPath("categories") as [[String]]
