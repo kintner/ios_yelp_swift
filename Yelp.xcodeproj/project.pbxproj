@@ -19,6 +19,8 @@
 		473D9F9B1A8B126100B4A130 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473D9F9A1A8B126100B4A130 /* BusinessCell.swift */; };
 		478F11211A8C4C19000F65F0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478F11201A8C4C19000F65F0 /* SettingsViewController.swift */; };
 		478F11251A8C5050000F65F0 /* FilterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478F11241A8C5050000F65F0 /* FilterSettings.swift */; };
+		47BA6C811A91511B00BF3010 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA6C801A91511B00BF3010 /* Filter.swift */; };
+		47BA6C831A91598300BF3010 /* FilterKeyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA6C821A91598300BF3010 /* FilterKeyValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		473D9F9A1A8B126100B4A130 /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		478F11201A8C4C19000F65F0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		478F11241A8C5050000F65F0 /* FilterSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSettings.swift; sourceTree = "<group>"; };
+		47BA6C801A91511B00BF3010 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		47BA6C821A91598300BF3010 /* FilterKeyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterKeyValue.swift; sourceTree = "<group>"; };
 		6E1B040AA6B68EE514FCC309 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C56EF0CE844A4EE5819C72AF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -156,6 +160,8 @@
 			children = (
 				473D9F981A8B01BE00B4A130 /* Business.swift */,
 				478F11241A8C5050000F65F0 /* FilterSettings.swift */,
+				47BA6C801A91511B00BF3010 /* Filter.swift */,
+				47BA6C821A91598300BF3010 /* FilterKeyValue.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -321,6 +327,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				222D8A5D19CCF9F900D2DB53 /* ViewController.swift in Sources */,
+				47BA6C811A91511B00BF3010 /* Filter.swift in Sources */,
+				47BA6C831A91598300BF3010 /* FilterKeyValue.swift in Sources */,
 				473D9F991A8B01BE00B4A130 /* Business.swift in Sources */,
 				478F11251A8C5050000F65F0 /* FilterSettings.swift in Sources */,
 				222D8A7D19CCFAE000D2DB53 /* YelpClient.swift in Sources */,

@@ -52,7 +52,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Do any additional setup after loading the view, typically from a nib.
         self.yelpClient = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        doYelpSearch(defaultSearch)
+        //doYelpSearch(defaultSearch)
+        performSegueWithIdentifier("filterPush", sender: nil)
     }
     
     func doYelpSearch(query: String) {

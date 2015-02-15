@@ -7,14 +7,16 @@
 //
 
 class FilterSettings {
-    var category : String?
-    var sort : sortKeys?
-    var hasDeals: Boolean?
+    var categories : [String]
+    var sort : sortKeys
+    var hasDeals: Bool
     
     enum sortKeys { case bestMatch, distance, rating }
     
     init() {
-        
+        categories = []
+        sort = sortKeys.distance
+        hasDeals = false
     }
     
 }

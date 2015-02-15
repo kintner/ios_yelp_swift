@@ -148,7 +148,7 @@
                     <navigationItem key="navigationItem" id="Uiu-6F-9Sp">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="bez-v7-pTl">
                             <connections>
-                                <segue destination="RKM-xc-mNY" kind="presentation" id="HNt-V2-S2x"/>
+                                <segue destination="RKM-xc-mNY" kind="presentation" identifier="filterPush" id="HNt-V2-S2x"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -173,8 +173,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nrg-dv-hIU">
-                                <rect key="frame" x="0.0" y="11" width="375" height="60"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrg-dv-hIU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="7Nb-BQ-WFO"/>
                                 </constraints>
@@ -193,21 +193,28 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="c8H-lD-OK8">
-                                <rect key="frame" x="82" y="152" width="188" height="334"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="c8H-lD-OK8">
+                                <rect key="frame" x="0.0" y="60" width="375" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nrg-dv-hIU" firstAttribute="top" secondItem="cjj-r8-FoG" secondAttribute="topMargin" id="D4y-LR-vrv"/>
+                            <constraint firstItem="4fn-yq-oIE" firstAttribute="top" secondItem="c8H-lD-OK8" secondAttribute="bottom" id="J0f-WO-Bg0"/>
+                            <constraint firstItem="c8H-lD-OK8" firstAttribute="top" secondItem="nrg-dv-hIU" secondAttribute="bottom" id="YDH-Dh-ZKM"/>
+                            <constraint firstItem="c8H-lD-OK8" firstAttribute="leading" secondItem="cjj-r8-FoG" secondAttribute="leading" id="YhU-Zw-pFa"/>
                             <constraint firstItem="nrg-dv-hIU" firstAttribute="leading" secondItem="cjj-r8-FoG" secondAttribute="leadingMargin" constant="-16" id="gB3-NL-fqI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nrg-dv-hIU" secondAttribute="trailing" constant="-16" id="jB1-dl-jFI"/>
+                            <constraint firstAttribute="trailing" secondItem="c8H-lD-OK8" secondAttribute="trailing" id="wnD-j4-dh3"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="c8H-lD-OK8" id="plz-lw-5e2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4CY-Ya-xMu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
