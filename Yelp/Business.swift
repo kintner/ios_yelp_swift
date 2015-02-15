@@ -18,22 +18,40 @@ class Business {
   
     
     init(fromDictionary dictionary: NSDictionary) {
-        var cats = dictionary.valueForKeyPath("categories") as [[String]]
-        categories = ", ".join(cats[0])
+        NSLog("dict: %@", dictionary)
+        
+        if let cats = dictionary.valueForKeyPath("categories") as? [[String]] {
+            categories = ", ".join(cats.map({$0[0]}))
+        }
         
         name = dictionary.valueForKeyPath("name") as? String
-        imageUrl = NSURL(string: dictionary.valueForKeyPath("image_url") as String)
         
-        var street = dictionary.valueForKeyPath("location.address") as [String]
-        var neighborhood = dictionary.valueForKeyPath("location.neighborhoods") as [String]
-        address = "\(street[0]) \(neighborhood[0])"
+        if let url = dictionary.valueForKeyPath("image_url") as String? {
+           imageUrl = NSURL(string: url)
+        }
+        
+        
+        var street = dictionary.valueForKeyPath("location.address") as? [String]
+        var neighborhood = dictionary.valueForKeyPath("location.neighborhoods") as? [String]
+        
+        if let s = street {
+            if s.count > 0 {
+                if let n = neighborhood {
+                    if s.count > 0 {
+                        address = "\(s[0]) \(n[0])"
+                    }
+                } else {
+                    address = "\(s[0])"
+                }
+            }
+        }
         
         numRatings = dictionary.valueForKeyPath("review_count") as? Int
         ratingImageUrl = NSURL(string: dictionary.valueForKeyPath("rating_img_url") as String)
         
         var milesPerMeter = 0.000621371
         
-        distance = 3.141 //(dictionary.valueForKeyPath("distance") as Double) * milesPerMeter
+        distance = (dictionary.valueForKeyPath("distance") as Double) * milesPerMeter
     }
     
     class func businessesWithDictionaries(dictionaries : [NSDictionary]) -> [Business] {

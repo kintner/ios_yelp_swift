@@ -29,15 +29,13 @@ class BusinessCell: UITableViewCell {
     func updateFromModel(model : Business) {
         self.model = model
         self.title.text = model.name
-        self.distance.text = "\(model.distance!) mi"
-        self.cost.text = "TODO"
+        self.distance.text = NSString(format: "%.2fmi", model.distance!)
+        self.cost.text = "$$"
         self.numReviews.text = "\(model.numRatings!) Reviews"
         self.address.text = model.address
         self.categories.text = model.categories
         self.ratingImage.setImageWithURL(model.ratingImageUrl)
         self.posterImage.setImageWithURL(model.imageUrl)
-        
-        
         
     }
 

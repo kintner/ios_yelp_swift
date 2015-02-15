@@ -22,6 +22,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let yelpConsumerSecret = "33QCvh5bIF5jIHR5klQr7RtBDhQ"
     let yelpToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
     let yelpTokenSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
+    var yelpClient : YelpClient!
+    let defaultSearch = "thai"
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -36,6 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50
+        tableView.allowsSelection = false
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -45,17 +48,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
         
+        searchController.searchBar.placeholder = defaultSearch
         
         // Do any additional setup after loading the view, typically from a nib.
-        client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        
-        client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        self.yelpClient = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
+        doYelpSearch(defaultSearch)
+    }
+    
+    func doYelpSearch(query: String) {
+        NSLog("Doing search for %", query)
+        yelpClient.searchWithTerm(query, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             self.businesses = Business.businessesWithDictionaries(response.valueForKeyPath("businesses") as [NSDictionary])
             self.filteredData = self.businesses
             self.tableView.reloadData()
         }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
             println(error)
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,11 +85,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchText = searchController.searchBar.text
         
-        filteredData = searchText.isEmpty ? businesses : businesses.filter({(biz: Business) -> Bool in
-            return biz.name!.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
-        })
+        if searchText.isEmpty {
+            doYelpSearch(defaultSearch)
+        } else {
+            doYelpSearch(searchText)
+        }
         
-        tableView.reloadData()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
