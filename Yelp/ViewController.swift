@@ -61,11 +61,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let query = currentSearchText()
         
         NSLog("Doing search for %", query)
+        SVProgressHUD.show()
         yelpClient.searchWithTerm(query, filters: filters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             self.businesses = Business.businessesWithDictionaries(response.valueForKeyPath("businesses") as [NSDictionary])
             self.filteredData = self.businesses
+            SVProgressHUD.dismiss()
             self.tableView.reloadData()
         }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            SVProgressHUD.dismiss()
+            let alert = UIAlertController(title: "Network Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
             println(error)
         }
         
