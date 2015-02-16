@@ -18,7 +18,7 @@ class Business {
   
     
     init(fromDictionary dictionary: NSDictionary) {
-        NSLog("dict: %@", dictionary)
+        //NSLog("dict: %@", dictionary)
         
         if let cats = dictionary.valueForKeyPath("categories") as? [[String]] {
             categories = ", ".join(cats.map({$0[0]}))

@@ -12,16 +12,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
-    var filterSettings : FilterSettings!
     var delegate : SettingsViewControllerDelegate?
     var filters : [Filter]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        filters = Filter.defaultFilters()
         
         tableView.delegate = self
         tableView.dataSource = self
+        NSLog("view didload")
         tableView.reloadData()
 
         // Do any additional setup after loading the view.
@@ -37,36 +36,63 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     @IBAction func filterTapped(sender: UIBarButtonItem) {
-        delegate?.didChangeFilters(filterSettings)
+        delegate?.didChangeFilters(filters)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
-    func setFilterSettings(filterSettings : FilterSettings) {
-        self.filterSettings = filterSettings
+    func setFilters(filters : [Filter]) {
+        NSLog("setting filters: %@", filters)
+        self.filters = filters
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return filters[section].displayName
+        return filters[section].sectionName
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
-
         var filter = filters[indexPath.section]
         
-        cell.textLabel?.text = filter.values[indexPath.row].name
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        if (filter.optionSelected(indexPath.row)) {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        if (filter.type == Filter.filterType.list) {
+            cell.textLabel?.text = filter.values[indexPath.row].name
+        
+            if (filter.optionSelected(indexPath.row)) {
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            }
+        } else {
+            cell.textLabel?.text = filter.values[0].name
+            var switchControl = UISwitch()
+            switchControl.addTarget(self, action: "switchToggled:", forControlEvents: UIControlEvents.ValueChanged)
+            
+            switchControl.on = filter.optionSelected(0)
+            cell.accessoryView = switchControl
         }
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         return cell
     }
     
+    func switchToggled(sender: UISwitch) {
+        var cell = sender.superview as UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        if let indexPath = tableView.indexPathForCell(cell) {
+            var filter = filters[indexPath.section]
+            sender.on = filter.toggleOption(0)
+        }
+        
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filters[section].values.count
+        var filter = filters[section]
+        
+        if filter.type == Filter.filterType.list {
+            return filters[section].values.count
+        } else {
+            return 1
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -91,5 +117,5 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 }
 
 protocol SettingsViewControllerDelegate {
-    func didChangeFilters(filterSettings: FilterSettings)
+    func didChangeFilters(filters : [Filter])
 }

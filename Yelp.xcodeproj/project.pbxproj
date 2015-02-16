@@ -21,6 +21,7 @@
 		478F11251A8C5050000F65F0 /* FilterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478F11241A8C5050000F65F0 /* FilterSettings.swift */; };
 		47BA6C811A91511B00BF3010 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA6C801A91511B00BF3010 /* Filter.swift */; };
 		47BA6C831A91598300BF3010 /* FilterKeyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA6C821A91598300BF3010 /* FilterKeyValue.swift */; };
+		47BA6C851A916E1F00BF3010 /* SwitchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA6C841A916E1F00BF3010 /* SwitchFilter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		478F11241A8C5050000F65F0 /* FilterSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSettings.swift; sourceTree = "<group>"; };
 		47BA6C801A91511B00BF3010 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		47BA6C821A91598300BF3010 /* FilterKeyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterKeyValue.swift; sourceTree = "<group>"; };
+		47BA6C841A916E1F00BF3010 /* SwitchFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchFilter.swift; sourceTree = "<group>"; };
 		6E1B040AA6B68EE514FCC309 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C56EF0CE844A4EE5819C72AF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -158,6 +160,7 @@
 		473D9F971A8B016F00B4A130 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				47BA6C841A916E1F00BF3010 /* SwitchFilter.swift */,
 				473D9F981A8B01BE00B4A130 /* Business.swift */,
 				478F11241A8C5050000F65F0 /* FilterSettings.swift */,
 				47BA6C801A91511B00BF3010 /* Filter.swift */,
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				222D8A5D19CCF9F900D2DB53 /* ViewController.swift in Sources */,
+				47BA6C851A916E1F00BF3010 /* SwitchFilter.swift in Sources */,
 				47BA6C811A91511B00BF3010 /* Filter.swift in Sources */,
 				47BA6C831A91598300BF3010 /* FilterKeyValue.swift in Sources */,
 				473D9F991A8B01BE00B4A130 /* Business.swift in Sources */,

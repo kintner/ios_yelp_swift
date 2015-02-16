@@ -14,7 +14,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var filteredData: [Business] = []
     var searchBar: UISearchBar?
     var searchController: UISearchController!
-    var filterSettings : FilterSettings!
+    var filters: [Filter] = []
+    
+    @IBOutlet weak var navItem: UINavigationItem!
     
     @IBOutlet weak var tableView: UITableView!
     // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
@@ -23,7 +25,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let yelpToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
     let yelpTokenSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
     var yelpClient : YelpClient!
-    let defaultSearch = "thai"
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        filterSettings = FilterSettings()
+        filters = Filter.defaultFilters()
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -44,21 +45,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
-        tableView.tableHeaderView = searchController.searchBar
-        //navigationItem.titleView = searchController.searchBar
+        searchController.searchBar.placeholder = "keywords"
+        searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.titleView = searchController.searchBar
+
         definesPresentationContext = true
         
-        searchController.searchBar.placeholder = defaultSearch
-        
-        // Do any additional setup after loading the view, typically from a nib.
         self.yelpClient = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        //doYelpSearch(defaultSearch)
-        performSegueWithIdentifier("filterPush", sender: nil)
+        doYelpSearch()
+        
+        //performSegueWithIdentifier("filterPush", sender: nil)
     }
     
-    func doYelpSearch(query: String) {
+    func doYelpSearch() {
+        let query = currentSearchText()
+        
         NSLog("Doing search for %", query)
-        yelpClient.searchWithTerm(query, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        yelpClient.searchWithTerm(query, filters: filters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             self.businesses = Business.businessesWithDictionaries(response.valueForKeyPath("businesses") as [NSDictionary])
             self.filteredData = self.businesses
             self.tableView.reloadData()
@@ -84,25 +87,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
+        doYelpSearch()
+    }
+    
+    func currentSearchText() -> String {
         let searchText = searchController.searchBar.text
-        
-        if searchText.isEmpty {
-            doYelpSearch(defaultSearch)
-        } else {
-            doYelpSearch(searchText)
-        }
-        
+        return searchText.isEmpty ? "" : searchText
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var vc = segue.destinationViewController as SettingsViewController
         vc.delegate = self
-        vc.setFilterSettings(filterSettings)
+        vc.setFilters(filters)
     }
     
-    func didChangeFilters(filterSettings: FilterSettings) {
-        self.filterSettings = filterSettings
-        // do search
+    func didChangeFilters(filters: [Filter]) {
+        self.filters = filters
+        doYelpSearch()
     }
     
 }
