@@ -52,8 +52,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88 Division St, Mission Bay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me9-0s-mUF">
-                                                    <rect key="frame" x="86" y="45" width="128" height="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88 Division St, Mission Bay" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Me9-0s-mUF">
+                                                    <rect key="frame" x="86" y="45" width="281" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -65,8 +65,8 @@
                                                         <constraint firstAttribute="height" constant="17" id="uW3-9E-3Z9"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwC-2a-DCQ">
-                                                    <rect key="frame" x="86" y="59" width="98" height="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwC-2a-DCQ">
+                                                    <rect key="frame" x="86" y="59" width="281" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -84,6 +84,7 @@
                                                 <constraint firstItem="Me9-0s-mUF" firstAttribute="leading" secondItem="221-k7-ahb" secondAttribute="trailing" constant="8" id="69r-VR-T8J"/>
                                                 <constraint firstItem="B5S-tX-Mgi" firstAttribute="trailing" secondItem="lIy-Zp-oBR" secondAttribute="trailingMargin" constant="8" id="7Ih-IF-wrN"/>
                                                 <constraint firstItem="GfR-tX-Fxe" firstAttribute="top" secondItem="lIy-Zp-oBR" secondAttribute="topMargin" constant="4" id="CHA-nB-dSK"/>
+                                                <constraint firstAttribute="trailing" secondItem="pwC-2a-DCQ" secondAttribute="trailing" constant="8" id="GmX-cN-Xv9"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pwC-2a-DCQ" secondAttribute="bottom" constant="8" id="Jvc-ag-84h"/>
                                                 <constraint firstItem="JwU-iT-b8h" firstAttribute="top" secondItem="lIy-Zp-oBR" secondAttribute="top" constant="8" id="LMU-zn-EwU"/>
                                                 <constraint firstItem="4ga-UZ-lyd" firstAttribute="leading" secondItem="3ZN-Fq-LTV" secondAttribute="trailing" constant="5" id="MNf-7n-W91"/>
@@ -104,6 +105,7 @@
                                                 <constraint firstItem="GfR-tX-Fxe" firstAttribute="leading" secondItem="JwU-iT-b8h" secondAttribute="trailing" constant="8" id="eEu-Ua-5AG"/>
                                                 <constraint firstItem="pwC-2a-DCQ" firstAttribute="top" secondItem="Me9-0s-mUF" secondAttribute="bottom" constant="2" id="hp4-GW-B6n"/>
                                                 <constraint firstItem="3ZN-Fq-LTV" firstAttribute="leading" secondItem="221-k7-ahb" secondAttribute="trailing" constant="8" id="jvC-KK-kWV"/>
+                                                <constraint firstAttribute="trailing" secondItem="Me9-0s-mUF" secondAttribute="trailing" constant="8" id="kO2-hY-m8l"/>
                                                 <constraint firstItem="GfR-tX-Fxe" firstAttribute="leading" secondItem="JwU-iT-b8h" secondAttribute="trailing" constant="8" id="ml0-wl-e3g"/>
                                                 <constraint firstItem="Me9-0s-mUF" firstAttribute="top" secondItem="3ZN-Fq-LTV" secondAttribute="bottom" constant="2" id="wMc-6w-pbL"/>
                                                 <constraint firstItem="JwU-iT-b8h" firstAttribute="leading" secondItem="221-k7-ahb" secondAttribute="trailing" constant="8" id="yMo-5b-pEU"/>
